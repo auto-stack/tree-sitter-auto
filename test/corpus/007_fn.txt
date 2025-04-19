@@ -1,0 +1,70 @@
+===============
+Simple Function
+===============
+
+fn answer() { 42 }
+
+---
+
+(code
+    (fn
+        (name)
+        (params)
+        (body
+            (int))))
+
+
+===============
+Function Params
+===============
+
+
+fn add(a, b) { a + b }
+
+---
+
+(code
+    (fn
+        (name)
+        (params
+            (name)
+            (name))
+        (body
+            (bina
+                (name)
+                (name)))))
+
+
+=============
+Function Call
+=============
+
+add(1, 2)
+
+---
+
+(code
+    (call
+        (name)
+        (args
+            (int)
+            (int))))
+
+=============
+One line Func
+=============
+
+fn mult(a, b) = a*b
+
+---
+
+(code
+    (fn
+        (name)
+        (params
+            (name)
+            (name))
+        (body
+            (bina
+                (name)
+                (name)))))

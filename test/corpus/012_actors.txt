@@ -1,0 +1,49 @@
+============
+Simple Actor
+============
+
+state(init:green, change:on_change_callback) {
+  green: timer -> yellow
+  yellow: timer -> red
+  red: {
+    timer -> green
+    .enter: on_red_enter_callback
+    .exit: on_red_exit_callback
+  }
+}
+
+---
+
+(code
+  (call
+    (name)
+    (args
+      (pair
+        (key)
+        (name))
+      (pair
+        (key)
+        (name)))
+    (body
+      (pair
+        (key)
+        (trans
+          (name)
+          (name)))
+      (pair
+        (key)
+        (trans
+          (name)
+          (name)))
+      (pair
+        (key)
+        (obj
+          (trans
+            (name)
+            (name))
+          (pair
+            (key)
+            (name))
+          (pair
+            (key)
+            (name)))))))

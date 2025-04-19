@@ -1,0 +1,69 @@
+=================
+Simple Arithmetic
+=================
+
+1+-2
+
+---
+
+(code
+    (bina
+        (int)
+        (una
+            (int))))
+
+================
+Mixed Arithmetic
+================
+
+1*-2 + 3 - 4/5
+
+---
+
+(code
+    (bina
+        (bina
+          (bina
+            (int)
+            (una
+              (int)))
+          (int))
+        (bina
+          (int)
+          (int))))
+
+==============
+Var Arithmetic
+==============
+
+var a = 1
+var b = 2
+a*b
+
+---
+(code
+    (var
+        (name)
+        (int))
+    (var
+        (name)
+        (int))
+    (bina
+        (name)
+        (name)))
+
+
+==============
+Float in Arith
+==============
+
+8*-3.52
+
+---
+
+(code
+    (bina
+        (int)
+        (una
+            (float))))
+            

@@ -1,0 +1,64 @@
+=============
+Simple Object
+=============
+
+{
+    a: 1
+}
+
+---
+
+(code
+    (obj
+        (pair
+            (key)
+            (int))))
+
+=============
+Normal Object
+=============
+
+{
+    a: "nihao"
+    b: 21
+}
+
+---
+
+(code
+    (obj
+        (pair
+            (key)
+            (str))
+        (pair
+            (key)
+            (int))))
+
+
+======================
+Object with Mix Values
+======================
+
+{
+    1
+    2
+    a: "nihao"
+    d: [1, 2, 3]
+}
+
+---
+
+(code
+    (obj
+        (int)
+        (int)
+        (pair
+            (key)
+            (str))
+        (pair
+            (key)
+            (array
+                (int)
+                (int)
+                (int)))))
+

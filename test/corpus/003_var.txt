@@ -1,0 +1,45 @@
+==========
+Simple Var
+==========
+
+var i = 41
+a: i
+
+---
+
+(code
+    (var
+        (name)
+        (int))
+    (pair
+        (key)
+        (name)))
+
+
+==========
+Assignment
+==========
+
+var a = 10
+
+x: a
+
+a = 100
+
+y: a
+
+---
+
+(code
+    (var
+        (name)
+        (int))
+    (pair
+        (key)
+        (name))
+    (asn
+        (name)
+        (int))
+    (pair
+        (key)
+        (name)))

@@ -1,0 +1,15 @@
+=============
+Simple Schema
+=============
+
+schema DCM {
+    timings: {
+        S3Server(int, 5000): range(0, 10000)
+    }
+    security: {
+        NumAtt(int, 3): range(1, 255)
+        DelayTime(int, 3000): range(0, 10000)
+    }
+}
+
+---

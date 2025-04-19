@@ -1,0 +1,91 @@
+==========
+Simple Mod
+==========
+
+mod math {
+    fn square(x) = x*x
+}
+
+---
+
+(code
+    (mod
+        (name)
+        (body
+            (fn
+                (name)
+                (params
+                    (name))
+                (body
+                    (bina
+                        (name)
+                        (name)))))))
+
+
+==============
+Mod scoped use
+==============
+
+use math
+
+a: math.square(5)
+
+---
+
+(code
+    (use
+        (name))
+    (pair
+        (key)
+        (call
+            (name)
+            (args
+                (int)))))
+
+==========
+Direct use
+==========
+
+use math.square
+
+x : square(8)
+
+---
+
+(code
+    (use
+        (name))
+    (pair
+        (key)
+        (call
+            (name)
+            (args
+                (int)))))
+
+===================
+Multiple Direct Use
+===================
+
+// alternative: use math.[square, add]
+use math: square, add
+
+x: add(8, square(5))
+
+---
+
+(code
+    (use
+        (name)
+        (subs
+            (name)
+            (name)))
+    (pair
+        (key)
+        (call
+            (name)
+            (args
+                (int)
+                (call
+                    (name)
+                    (args
+                        (int)))))))

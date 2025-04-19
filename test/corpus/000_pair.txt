@@ -1,0 +1,58 @@
+===========
+Simple Pair
+===========
+
+a: 1
+
+---
+
+(code
+    (pair
+        (key)
+        (int)))
+
+
+==============
+Multiple Pairs
+==============
+
+a: 1
+b: 2
+c: 3
+
+---
+
+(code
+    (pair
+        (key)
+        (int))
+    (pair
+        (key)
+        (int))
+    (pair
+        (key)
+        (int)))
+
+
+================
+Multiple Strings
+================
+
+"a"
+"b"
+f"c"
+f"""c"""
+f"""d"""
+
+---
+
+(code
+    (str)
+    (str)
+    (fstr
+        (spart))
+    (fstr
+        (spart))
+    (fstr
+        (spart)))
+

@@ -1,0 +1,259 @@
+=========
+Simple if
+=========
+
+if true {1} else {0}
+
+---
+
+(code
+    (if
+        (true)
+        (then
+            (int))
+        (else
+            (int))))
+
+
+=======
+Else If
+=======
+
+if a > 10 {
+    print("a>10")
+} else if a > 0 {
+    print("10>a>0")
+} else {
+    print("a < 0")
+}
+
+---
+
+(code
+    (if
+        (comp
+            (name)
+            (int))
+        (then
+            (call
+                (name)
+                (args
+                    (str))))
+        (comp
+            (name)
+            (int))
+        (then
+            (call
+                (name)
+                (args
+                    (str))))
+        (else
+            (call
+                (name)
+                (args
+                    (str))))))
+
+
+===============
+If as asn value
+===============
+
+var answer = if true { 42 } else { 0 }
+
+---
+
+(code
+    (var
+        (name)
+        (if
+            (true)
+            (then
+                (int))
+            (else
+                (int)))))
+
+==========
+if in pair
+==========
+
+a : if false { 1 } else { 0 }
+
+---
+
+(code
+    (pair
+        (key)
+        (if
+            (false)
+            (then
+                (int))
+            (else
+                (int)))))
+
+========
+For loop
+========
+
+for var a = 0; a < 10 {
+    print(a)
+}
+
+---
+
+(code
+    (for
+        (var
+            (name)
+            (int))
+        (comp
+            (name)
+            (int))
+        (body
+            (call
+                (name)
+                    (args
+                        (name))))))
+
+
+========
+For Ever
+========
+
+for {
+    print("ever")
+}
+
+---
+
+(code
+    (for
+        (body
+            (call
+                (name)
+                    (args
+                        (str))))))
+
+===========
+For in loop
+===========
+
+for i, x in arr {
+    x+1
+}
+
+---
+
+(code
+    (for
+        (in
+            (idx)
+            (name)
+            (name))
+        (body
+            (bina
+                (name)
+                (int)))))
+
+=============
+For in loop 2
+=============
+
+var arr = [1, 2, 3]
+
+for a in arr {
+    f"x$a" : a*a
+}
+
+---
+
+(code
+    (var
+        (name)
+        (array
+            (int)
+            (int)
+            (int)))
+    (for
+        (in
+            (name)
+            (name))
+        (body
+            (pair
+                (fstr
+                    (spart)
+                    (interpol
+                        (name)))
+                (bina
+                    (name)
+                    (name))))))
+
+
+===========
+When clause
+===========
+
+when var x = 1; x {
+    is 1 -> print("x == 1")
+    is 2 -> print("x == 2")
+    else -> print("others")
+}
+
+---
+
+(code
+    (when
+        (var
+            (name)
+            (int))
+        (name)
+        (body
+            (case
+                (int)
+                (call
+                    (name)
+                    (args
+                        (str))))
+            (case
+                (int)
+                (call
+                    (name)
+                    (args
+                        (str))))
+            (else
+                (call
+                    (name)
+                    (args
+                        (str)))))))
+
+================
+when as rhs expr
+================
+
+var n = "b"
+
+k: when n {
+    is "a" -> "apple"
+    is "b" -> "banana"
+    is "c" -> "cherry"
+}
+
+---
+
+(code
+    (var
+        (name)
+        (str))
+    (pair
+        (key)
+        (when
+            (name)
+            (body
+                (case
+                    (str)
+                    (str))
+                (case
+                    (str)
+                    (str))
+                (case
+                    (str)
+                    (str))))))

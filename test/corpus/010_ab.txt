@@ -1,0 +1,154 @@
+==============
+Simple Project
+==============
+
+project: "hello_project"
+version: "v0.0.1"
+compiler: "arm-none-eabi-gcc"
+
+node lib(name) {
+    // Default props of this node
+    dir: name
+    src: "{dir}/src"
+    inc: "{dir}/inc"
+}
+
+node exe(name) {
+    dir: "."
+    src: "{dir}/{name}.c"
+    inc: "{dir}.inc"
+}
+
+lib(mymath)
+
+exe(hello) {
+  dep: mymath
+}
+
+---
+
+(code
+    (pair
+        (key)
+        (str))
+    (pair
+        (key)
+        (str))
+    (pair
+        (key)
+        (str))
+    (node
+        (name)
+        (prop
+            (name))
+        (body
+            (pair
+                (key)
+                (name))
+            (pair
+                (key)
+                (str))
+            (pair
+                (key)
+                (str))))
+    (node
+        (name)
+        (prop
+            (name))
+        (body
+            (pair
+                (key)
+                (str))
+            (pair
+                (key)
+                (str))
+            (pair
+                (key)
+                (str))))
+    (call
+        (name)
+        (args
+            (name)))
+    (call
+        (name)
+        (args
+            (name))
+        (body
+            (pair
+                (key)
+                (name)))))
+
+
+======
+Import
+======
+
+var device = "win32/win11"
+
+import Log
+import FreeRTOS(device)
+
+---
+
+(code
+    (var
+        (name)
+        (str))
+    (import
+        (name))
+    (import
+        (name)
+        (args
+            (name))))
+
+=============
+Import device
+=============
+
+import device("microsoft", "win11", "v1.0")
+
+---
+
+(code
+    (import
+        (name)
+        (args
+            (str)
+            (str)
+            (str))))
+
+==========
+if in node
+==========
+
+var s = "bad"
+
+node div(name) {
+    if s == "good" { message : "hello" }
+}
+
+div("mydiv")
+
+---
+
+(code
+    (var
+        (name)
+        (str))
+    (node
+        (name)
+        (prop
+            (name))
+        (body
+            (if
+                (comp
+                    (name)
+                    (str))
+                (then
+                    (pair
+                        (key)
+                        (str))))))
+    (call
+        (name)
+        (args
+            (str))))

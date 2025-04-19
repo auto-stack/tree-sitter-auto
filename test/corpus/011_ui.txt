@@ -1,0 +1,85 @@
+======
+Web UI
+======
+
+var count = 10
+
+fn inc_count() {
+    count = count + 1
+}
+
+ui {
+    text(width:5, value:"{count}")
+
+    button(class:"primary", onclick:"inc_count") {
+        text("+")
+    }
+}
+
+style {
+    ".primary": {
+        color: "blue"
+        "border-radius": "5px"
+    }
+}
+
+---
+
+(code
+  (var
+    (name)
+    (int))
+  (fn
+    (name)
+    (params)
+    (body
+      (asn
+        (name)
+        (bina
+          (name)
+          (int)))))
+  (ui
+    (body
+      (call
+        (name)
+        (args
+          (pair
+            (key)
+            (int))
+          (pair
+            (key)
+            (str))))
+      (call
+        (name)
+        (args
+          (pair
+            (key)
+            (str))
+          (pair
+            (key)
+            (str)))
+        (body
+          (call
+            (name)
+            (args
+              (str)))))))
+  (style
+    (pair
+      (key)
+      (obj
+        (pair
+          (key)
+          (str))
+        (pair
+          (key)
+          (str))))))
+      
+      
+      
+      
+      
+      
+      
+      
+              
+

@@ -1,0 +1,19 @@
+==========
+Simple XML
+==========
+
+file() {
+    name("crg_drv.c")
+}
+
+---
+
+(code
+    (call
+        (name)
+        (args)
+        (body
+            (call
+                (name)
+                (args
+                    (str))))))

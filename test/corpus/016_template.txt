@@ -1,0 +1,92 @@
+============
+Multi String
+============
+
+x : ```A B C D
+E F G```
+
+---
+
+(code
+    (pair
+        (key)
+        (mstr)))
+
+
+==========
+Format Str
+==========
+
+
+var x = 10
+f"$x is ten"
+
+---
+
+(code
+    (var
+        (name)
+        (int))
+    (fstr
+        (interpol
+            (name))
+        (spart)))
+
+
+====================
+Format str with expr
+====================
+
+var x = 10
+
+f"x > 5 is ${x > 5}"
+f"good ${if x > 5 {'now'}}"
+
+---
+
+(code
+    (var
+        (name)
+        (int))
+    (fstr
+        (spart)
+        (interpol
+            (comp
+                (name)
+                (int))))
+    (fstr
+        (spart)
+        (interpol
+            (if
+                (comp
+                    (name)
+                    (int))
+                (then
+                    (str))))))
+
+
+===============
+Special FString
+===============
+
+f"/*hello*/"
+f`#include "CanIf_Lcfg.h"`
+f`#include "CanIf_ConfigTypes.h"`
+f`#if defined(USE_CANSM)`
+f`#endif`
+
+
+---
+
+(code
+    (fstr
+        (spart))
+    (fstr
+        (spart))
+    (fstr
+        (spart))
+    (fstr
+        (spart))
+    (fstr
+        (spart)))
+    

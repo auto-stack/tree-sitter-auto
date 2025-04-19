@@ -1,0 +1,41 @@
+{
+  "$schema": "https://tree-sitter.github.io/tree-sitter/assets/schemas/config.schema.json",
+  "grammars": [
+    {
+      "name": "auto",
+      "camelcase": "Auto",
+      "title": "Auto Lang",
+      "scope": "source.auto",
+      "file-types": [
+        "ac",
+        "at",
+	"as"
+      ],
+      "injection-regex": "^auto$",
+      "class-name": "TreeSitterAuto"
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "the Auto programming language",
+    "authors": [
+      {
+        "name": "Zhao Puming",
+        "email": "visus@qq.com"
+      }
+    ],
+    "links": {
+      "repository": "https://gitee.com/auto-stack/auto-lang"
+    }
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true,
+    "zig": false
+  }
+}

@@ -1,0 +1,54 @@
+===========
+Simple Node
+===========
+
+node button(id, onclick fn) {
+    place_holder: "button"
+}
+
+---
+
+(code
+    (node
+        (name)
+        (prop
+            (name))
+        (prop
+            (name)
+            (name))
+        (body
+            (pair
+                (key)
+                (str)))))
+
+
+=============
+Node building
+=============
+
+button(id:"mybutton", onclick:"on_button") {
+    icon()
+    text("hallo")
+}
+
+---
+
+(code
+    (call
+        (name)
+        (args
+            (pair
+                (key)
+                (str))
+            (pair
+                (key)
+                (str)))
+        (body
+            (call
+                (name)
+                (args))
+            (call
+                (name)
+                (args
+                    (str))))))
+

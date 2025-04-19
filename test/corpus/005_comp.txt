@@ -1,0 +1,94 @@
+===========
+Simple Bool
+===========
+
+true
+false
+!true
+!false
+
+---
+
+(code
+    (true)
+    (false)
+    (una
+        (true))
+    (una
+        (false)))
+
+
+===========
+Simple Comp
+===========
+
+5 > 2
+3 < 4
+1 == 1
+0 != 0
+7 >= 8.2
+9 <= -5
+
+---
+
+(code
+    (comp
+        (int)
+        (int))
+    (comp
+        (int)
+        (int))
+    (comp
+        (int)
+        (int))
+    (comp
+        (int)
+        (int))
+    (comp
+        (int)
+        (float))
+    (comp
+        (int)
+        (una
+            (int))))
+
+
+============
+Complex Comp
+============
+
+5 + 1 > 4
+!(4 > 3)
+
+
+---
+
+(code
+    (comp
+        (bina
+            (int)
+            (int))
+        (int))
+    (una
+        (group
+            (comp
+                (int)
+                (int)))))
+
+
+==============
+Group vs Tuple
+==============
+
+var x = (4 > 3)
+
+---
+
+(code
+    (var
+        (name)
+        (group
+            (comp
+                (int)
+                (int)))))
+
