@@ -6,14 +6,14 @@ project: "hello_project"
 version: "v0.0.1"
 compiler: "arm-none-eabi-gcc"
 
-node lib(name) {
+node lib(identifier) {
     // Default props of this node
     dir: name
     src: "{dir}/src"
     inc: "{dir}/inc"
 }
 
-node exe(name) {
+node exe(identifier) {
     dir: "."
     src: "{dir}/{name}.c"
     inc: "{dir}.inc"
@@ -38,13 +38,14 @@ exe(hello) {
         (key)
         (str))
     (node
-        (name)
+        (identifier)
         (prop
-            (name))
+            (identifier))
         (body
+            (comments)
             (pair
                 (key)
-                (name))
+                (identifier))
             (pair
                 (key)
                 (str))
@@ -52,9 +53,9 @@ exe(hello) {
                 (key)
                 (str))))
     (node
-        (name)
+        (identifier)
         (prop
-            (name))
+            (identifier))
         (body
             (pair
                 (key)
@@ -66,17 +67,17 @@ exe(hello) {
                 (key)
                 (str))))
     (call
-        (name)
+        (identifier)
         (args
-            (name)))
+            (identifier)))
     (call
-        (name)
+        (identifier)
         (args
-            (name))
+            (identifier))
         (body
             (pair
                 (key)
-                (name)))))
+                (identifier)))))
 
 
 ======
@@ -92,14 +93,14 @@ import FreeRTOS(device)
 
 (code
     (var
-        (name)
+        (identifier)
         (str))
     (import
-        (name))
+        (identifier))
     (import
-        (name)
+        (identifier)
         (args
-            (name))))
+            (identifier))))
 
 =============
 Import device
@@ -111,7 +112,7 @@ import device("microsoft", "win11", "v1.0")
 
 (code
     (import
-        (name)
+        (identifier)
         (args
             (str)
             (str)
@@ -123,7 +124,7 @@ if in node
 
 var s = "bad"
 
-node div(name) {
+node div(identifier) {
     if s == "good" { message : "hello" }
 }
 
@@ -133,22 +134,22 @@ div("mydiv")
 
 (code
     (var
-        (name)
+        (identifier)
         (str))
     (node
-        (name)
+        (identifier)
         (prop
-            (name))
+            (identifier))
         (body
             (if
                 (comp
-                    (name)
+                    (identifier)
                     (str))
                 (then
                     (pair
                         (key)
                         (str))))))
     (call
-        (name)
+        (identifier)
         (args
             (str))))

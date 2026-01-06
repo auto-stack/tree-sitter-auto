@@ -86,7 +86,7 @@ var x = (4 > 3)
 
 (code
     (var
-        (name)
+        (identifier)
         (group
             (comp
                 (int)

@@ -25,11 +25,11 @@ f"$x is ten"
 
 (code
     (var
-        (name)
+        (identifier)
         (int))
     (fstr
         (interpol
-            (name))
+            (identifier))
         (spart)))
 
 
@@ -46,20 +46,20 @@ f"good ${if x > 5 {'now'}}"
 
 (code
     (var
-        (name)
+        (identifier)
         (int))
     (fstr
         (spart)
         (interpol
             (comp
-                (name)
+                (identifier)
                 (int))))
     (fstr
         (spart)
         (interpol
             (if
                 (comp
-                    (name)
+                    (identifier)
                     (int))
                 (then
                     (str))))))

@@ -32,24 +32,24 @@ if a > 10 {
 (code
     (if
         (comp
-            (name)
+            (identifier)
             (int))
         (then
             (call
-                (name)
+                (identifier)
                 (args
                     (str))))
         (comp
-            (name)
+            (identifier)
             (int))
         (then
             (call
-                (name)
+                (identifier)
                 (args
                     (str))))
         (else
             (call
-                (name)
+                (identifier)
                 (args
                     (str))))))
 
@@ -64,7 +64,7 @@ var answer = if true { 42 } else { 0 }
 
 (code
     (var
-        (name)
+        (identifier)
         (if
             (true)
             (then
@@ -103,16 +103,16 @@ for var a = 0; a < 10 {
 (code
     (for
         (var
-            (name)
+            (identifier)
             (int))
         (comp
-            (name)
+            (identifier)
             (int))
         (body
             (call
-                (name)
+                (identifier)
                     (args
-                        (name))))))
+                        (identifier))))))
 
 
 ========
@@ -129,7 +129,7 @@ for {
     (for
         (body
             (call
-                (name)
+                (identifier)
                     (args
                         (str))))))
 
@@ -146,12 +146,12 @@ for i, x in arr {
 (code
     (for
         (in
-            (idx)
-            (name)
-            (name))
+            (identifier)
+            (identifier)
+            (identifier))
         (body
             (bina
-                (name)
+                (identifier)
                 (int)))))
 
 =============
@@ -168,24 +168,24 @@ for a in arr {
 
 (code
     (var
-        (name)
+        (identifier)
         (array
             (int)
             (int)
             (int)))
     (for
         (in
-            (name)
-            (name))
+            (identifier)
+            (identifier))
         (body
             (pair
                 (fstr
                     (spart)
                     (interpol
-                        (name)))
+                        (identifier)))
                 (bina
-                    (name)
-                    (name))))))
+                    (identifier)
+                    (identifier))))))
 
 
 ===========
@@ -203,25 +203,25 @@ when var x = 1; x {
 (code
     (when
         (var
-            (name)
+            (identifier)
             (int))
-        (name)
+        (identifier)
         (body
             (case
                 (int)
                 (call
-                    (name)
+                    (identifier)
                     (args
                         (str))))
             (case
                 (int)
                 (call
-                    (name)
+                    (identifier)
                     (args
                         (str))))
             (else
                 (call
-                    (name)
+                    (identifier)
                     (args
                         (str)))))))
 
@@ -241,12 +241,12 @@ k: when n {
 
 (code
     (var
-        (name)
+        (identifier)
         (str))
     (pair
         (key)
         (when
-            (name)
+            (identifier)
             (body
                 (case
                     (str)

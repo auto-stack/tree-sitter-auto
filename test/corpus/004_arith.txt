@@ -43,14 +43,14 @@ a*b
 ---
 (code
     (var
-        (name)
+        (identifier)
         (int))
     (var
-        (name)
+        (identifier)
         (int))
     (bina
-        (name)
-        (name)))
+        (identifier)
+        (identifier)))
 
 
 ==============

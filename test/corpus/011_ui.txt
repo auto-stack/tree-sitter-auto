@@ -27,21 +27,21 @@ style {
 
 (code
   (var
-    (name)
+    (identifier)
     (int))
   (fn
-    (name)
+    (identifier)
     (params)
     (body
       (asn
-        (name)
+        (identifier)
         (bina
-          (name)
+          (identifier)
           (int)))))
   (ui
     (body
       (call
-        (name)
+        (identifier)
         (args
           (pair
             (key)
@@ -50,7 +50,7 @@ style {
             (key)
             (str))))
       (call
-        (name)
+        (identifier)
         (args
           (pair
             (key)
@@ -60,7 +60,7 @@ style {
             (str)))
         (body
           (call
-            (name)
+            (identifier)
             (args
               (str)))))))
   (style

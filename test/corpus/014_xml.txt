@@ -10,10 +10,10 @@ file() {
 
 (code
     (call
-        (name)
+        (identifier)
         (args)
         (body
             (call
-                (name)
+                (identifier)
                 (args
                     (str))))))

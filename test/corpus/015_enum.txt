@@ -1,0 +1,51 @@
+=============
+Enum Integers 
+=============
+
+enum Color {
+    RED = 0
+    GREEN = 1
+    BLUE = 2
+}
+
+---
+
+(code
+    (enum
+        (identifier)
+        (enum_member
+            (identifier)
+            (int))
+        (enum_member
+            (identifier)
+            (int))
+        (enum_member
+            (identifier)
+            (int))))
+
+
+==================
+Enum without value
+==================
+
+enum Token {
+    Int, // int
+    Float
+    Char
+    String
+}
+
+---
+
+(code
+    (enum
+        (identifier)
+        (enum_member
+            (identifier))
+        (comments)
+        (enum_member
+            (identifier))
+        (enum_member
+            (identifier))
+        (enum_member
+            (identifier))))

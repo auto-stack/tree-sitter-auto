@@ -10,16 +10,16 @@ mod math {
 
 (code
     (mod
-        (name)
+        (identifier)
         (body
             (fn
-                (name)
+                (identifier)
                 (params
-                    (name))
+                    (identifier))
                 (body
                     (bina
-                        (name)
-                        (name)))))))
+                        (identifier)
+                        (identifier)))))))
 
 
 ==============
@@ -34,11 +34,13 @@ a: math.square(5)
 
 (code
     (use
-        (name))
+        (identifier))
     (pair
         (key)
         (call
-            (name)
+            (ident_path
+                (identifier)
+                (identifier))
             (args
                 (int)))))
 
@@ -54,11 +56,13 @@ x : square(8)
 
 (code
     (use
-        (name))
+        (ident_path
+            (identifier)
+            (identifier)))
     (pair
         (key)
         (call
-            (name)
+            (identifier)
             (args
                 (int)))))
 
@@ -74,18 +78,19 @@ x: add(8, square(5))
 ---
 
 (code
+    (comments)
     (use
-        (name)
+        (identifier)
         (subs
-            (name)
-            (name)))
+            (identifier)
+            (identifier)))
     (pair
         (key)
         (call
-            (name)
+            (identifier)
             (args
                 (int)
                 (call
-                    (name)
+                    (identifier)
                     (args
                         (int)))))))

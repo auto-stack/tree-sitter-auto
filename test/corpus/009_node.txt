@@ -10,12 +10,12 @@ node button(id, onclick fn) {
 
 (code
     (node
-        (name)
+        (identifier)
         (prop
-            (name))
+            (identifier))
         (prop
-            (name)
-            (name))
+            (identifier)
+            (identifier))
         (body
             (pair
                 (key)
@@ -35,7 +35,7 @@ button(id:"mybutton", onclick:"on_button") {
 
 (code
     (call
-        (name)
+        (identifier)
         (args
             (pair
                 (key)
@@ -45,10 +45,10 @@ button(id:"mybutton", onclick:"on_button") {
                 (str)))
         (body
             (call
-                (name)
+                (identifier)
                 (args))
             (call
-                (name)
+                (identifier)
                 (args
                     (str))))))
 

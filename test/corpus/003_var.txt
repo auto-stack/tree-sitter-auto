@@ -9,11 +9,11 @@ a: i
 
 (code
     (var
-        (name)
+        (identifier)
         (int))
     (pair
         (key)
-        (name)))
+        (identifier)))
 
 
 ==========
@@ -32,14 +32,42 @@ y: a
 
 (code
     (var
-        (name)
+        (identifier)
         (int))
     (pair
         (key)
-        (name))
+        (identifier))
     (asn
-        (name)
+        (identifier)
         (int))
     (pair
         (key)
-        (name)))
+        (identifier)))
+
+
+==========
+Simple Let
+==========
+
+let a = 5
+
+---
+
+(code
+    (let
+        (identifier)
+        (int)))
+
+
+====
+bool
+====
+
+let a = true
+
+---
+
+(code
+    (let
+        (identifier)
+        (true)))

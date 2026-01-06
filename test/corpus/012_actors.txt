@@ -7,8 +7,8 @@ state(init:green, change:on_change_callback) {
   yellow: timer -> red
   red: {
     timer -> green
-    .enter: on_red_enter_callback
-    .exit: on_red_exit_callback
+    enter: on_red_enter_callback
+    exit: on_red_exit_callback
   }
 }
 
@@ -16,34 +16,34 @@ state(init:green, change:on_change_callback) {
 
 (code
   (call
-    (name)
+    (identifier)
     (args
       (pair
         (key)
-        (name))
+        (identifier))
       (pair
         (key)
-        (name)))
+        (identifier)))
     (body
       (pair
         (key)
         (trans
-          (name)
-          (name)))
+          (identifier)
+          (identifier)))
       (pair
         (key)
         (trans
-          (name)
-          (name)))
+          (identifier)
+          (identifier)))
       (pair
         (key)
         (obj
           (trans
-            (name)
-            (name))
+            (identifier)
+            (identifier))
           (pair
             (key)
-            (name))
+            (identifier))
           (pair
             (key)
-            (name)))))))
+            (identifier)))))))

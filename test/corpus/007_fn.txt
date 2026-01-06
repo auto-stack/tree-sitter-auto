@@ -8,7 +8,7 @@ fn answer() { 42 }
 
 (code
     (fn
-        (name)
+        (identifier)
         (params)
         (body
             (int))))
@@ -25,14 +25,14 @@ fn add(a, b) { a + b }
 
 (code
     (fn
-        (name)
+        (identifier)
         (params
-            (name)
-            (name))
+            (identifier)
+            (identifier))
         (body
             (bina
-                (name)
-                (name)))))
+                (identifier)
+                (identifier)))))
 
 
 =============
@@ -45,7 +45,7 @@ add(1, 2)
 
 (code
     (call
-        (name)
+        (identifier)
         (args
             (int)
             (int))))
@@ -60,11 +60,11 @@ fn mult(a, b) = a*b
 
 (code
     (fn
-        (name)
+        (identifier)
         (params
-            (name)
-            (name))
+            (identifier)
+            (identifier))
         (body
             (bina
-                (name)
-                (name)))))
+                (identifier)
+                (identifier)))))

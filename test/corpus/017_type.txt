@@ -1,0 +1,20 @@
+===========
+Simple Type
+===========
+
+type Point {
+    x int
+    y int
+}
+
+---
+
+(code
+    (type
+        (identifier)
+        (type_field
+            (identifier)
+            (type_name))
+        (type_field
+            (identifier)
+            (type_name))))

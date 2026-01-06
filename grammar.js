@@ -26,10 +26,10 @@ const PREC = {
 
 module.exports = grammar({
   name: "auto",
-  extras: ($) => [$._comment, /\s/],
+  extras: ($) => [$.comments, /\s/],
   // inline: $ => [$.key],
   supertypes: ($) => [$.stmt, $.expr, $.num],
-  word: ($) => $._ident_token,
+  word: ($) => $.identifier,
   conflicts: ($) => [[$.body, $.obj]],
   rules: {
     code: ($) => prec(PREC.CODE, semi_sep($.stmt)),
@@ -39,6 +39,7 @@ module.exports = grammar({
         $.use,
         $.import,
         $.var,
+        $.let,
         $.fn,
         $.node,
         $.asn,
@@ -48,32 +49,36 @@ module.exports = grammar({
         $.expr,
         $.ui,
         $.style,
+        $.type,
+        $.enum,
+        $.break,
       ),
-    mod: ($) => seq("mod", $.name, $.body),
+    mod: ($) => seq("mod", $._name, $.body),
     ui: ($) => seq("ui", $.body),
     style: ($) => seq("style", "{", semi_sep($.stmt), "}"),
-    use: ($) => seq("use", $.name, optional($.subs)),
-    import: ($) => seq("import", $.name, optional($.args)),
-    subs: ($) => prec.left(seq(": ", $.name, optional(seq(",", $.name)))),
-    var: ($) =>
-      seq("var", field("name", $.name), "=", field("value", $._asn_expr)),
+    use: ($) => seq("use", $._name, optional($.subs)),
+    import: ($) => seq("import", $._name, optional($.args)),
+    subs: ($) => prec.left(seq(": ", $._name, optional(seq(",", $._name)))),
+    var: ($) => seq("var", field("name", $._name), "=", field("value", $._asn_expr)),
+    let: ($) => seq("let", $._name, "=", $._asn_expr),
     _asn_expr: ($) => choice($.expr, $.if, $.when),
     fn: ($) =>
       seq(
         "fn",
-        field("name", $.name),
+        field("name", $._name),
         $.params,
         choice($.body, seq("=", alias($.expr, $.body))),
       ),
-    params: ($) => seq("(", comma_sep($.name), ")"),
+    params: ($) => seq("(", comma_sep($._name), ")"),
     body: ($) => prec(PREC.BODY, seq("{", semi_sep($.stmt), "}")),
     asn: ($) =>
       prec.left(
         PREC.ASN,
-        seq(field("name", $.name), "=", field("value", $._asn_expr)),
+        seq(field("name", $._name), "=", field("value", $._asn_expr)),
       ),
     expr: ($) =>
-      choice($.group, $.name, $.una, $.bina, $.comp, $.call, $._value),
+      choice($.group, $._name, $.una, $.bina, $.comp, $.call, $._value),
+    identifier_name: ($) => $._name,
     if: ($) =>
       seq(
         "if",
@@ -95,7 +100,7 @@ module.exports = grammar({
         ),
       ),
     _cond: ($) =>
-      choice($.group, $.una, $.bina, $.comp, $.call, $.true, $.false, $.name),
+      choice($.group, $.una, $.bina, $.comp, $.call, $.true, $.false, $._name),
     for: ($) =>
       choice(
         seq(
@@ -113,8 +118,8 @@ module.exports = grammar({
         )
     ),
     in: ($) => seq(
-          optional(seq(alias($._ident_token, $.idx), ",")),
-          alias($._ident_token, $.name),
+          optional(seq($.identifier, ",")),
+          $.identifier,
           "in",
           $._asn_expr,
     ),
@@ -147,21 +152,30 @@ module.exports = grammar({
         PREC.COMP,
         seq($.expr, choice("==", "!=", "<", "<=", ">", ">="), $.expr),
       ),
-    call: ($) => prec.right(PREC.CALL, seq($.expr, $.args, optional($.body))),
+    call: ($) => prec.right(PREC.CALL, seq(field("function", $.expr), $.args, optional($.body))),
     args: ($) => seq("(", comma_sep($.expr), ")"),
     _value: ($) => choice($._structured_value, $._single_value),
     _structured_value: ($) => choice($.pair, $.obj, $.array, $.trans),
-    _single_value: ($) => choice($.num, $.fstr, $.str, $.mstr, $.null, $.true, $.false),
+    _single_value: ($) => choice($.num, $.fstr, $.str, $.mstr, $.null, $.true, $.false, $.nil),
     obj: ($) => prec(PREC.OBJ, seq("{", comma_sep($.stmt), "}")),
-    pair: ($) => seq(field("key", choice(alias($.str, $.key), alias($.name, $.key), $.fstr)), ":", field("value", $._asn_expr)),
+    pair: ($) => seq(field("key", choice(alias($.str, $.key), alias($.identifier, $.key), $.fstr)), ":", field("value", $._asn_expr)),
     trans: ($) =>
       prec.left(
         PREC.TRANS,
-        seq(field("src", $.name), "->", field("dst", $.name)),
+        seq(field("src", $._name), "->", field("dst", $._name)),
       ),
-    name: ($) =>
-      seq(optional("."), $._ident_token, rep_seq(".", $._ident_token)),
-    _ident_token: (_) => {
+    _name: ($) =>
+      choice(
+        $.type_name,
+        $.identifier,
+        $.ident_path,
+      ),
+    ident_path: ($) => 
+      choice(
+        seq(".", $.identifier, rep_seq(".", $.identifier)),
+        seq($.identifier, ".", $.identifier, rep_seq(".", $.identifier)),
+      ),
+    identifier: ($) => {
       const ident_start1 = /[\$_a-zA-Z]/;
       const ident_part1 = choice(ident_start1, /[0-9]/);
       return token(seq(ident_start1, repeat(ident_part1)));
@@ -170,7 +184,7 @@ module.exports = grammar({
     node: ($) =>
       seq(
         "node",
-        field("name", $.name),
+        field("name", $._name),
         "(",
         comma_sep($.prop),
         ")",
@@ -178,8 +192,8 @@ module.exports = grammar({
       ),
     prop: ($) =>
       seq(
-        field("prop", $.name),
-        optional(seq(/[ \t]+/, field("type", $.name))),
+        field("prop", $._name),
+        optional(seq(/[ \t]+/, field("type", $._name))),
       ),
     node_body: ($) => seq("{", comma_sep($._node_stmt), "}"),
     _node_stmt: ($) => choice($.pair, $.if),
@@ -238,7 +252,7 @@ module.exports = grammar({
       )
     )),
     mstr: ($) => seq("```", rep_choice(/[^`$]/, $.interpol), "```"), // TODO: allow ` and `` in the string
-    interpol: ($) => seq("$", choice($.name, seq("{", $._asn_expr, "}"))),
+    interpol: ($) => seq("$", choice($._name, seq("{", $._asn_expr, "}"))),
     num: ($) => choice($.int, $.bin, $.hex, $.float),
     int: ($) => token(/[0-9_]+/),
     bin: ($) => token(seq("0b", /[01_]+/)),
@@ -255,9 +269,25 @@ module.exports = grammar({
       return token(dec_literal);
     },
     null: ($) => "null",
+    nil: ($) => "nil",
     true: ($) => "true",
     false: ($) => "false",
-    _comment: (_) =>
+    // Primitive type keywords
+    type_name: ($) => choice(
+      "int", "uint", "float", "double",
+      "usize", "byte", "ubyte",
+      "i8", "u8", "i16", "u16", "i32", "u32", "i64", "u64",
+      "str", "cstr", "char",
+      "void", "bool",
+    ),
+    // enum
+    enum: ($) => seq("enum", field("name", $._name), "{", comma_sep($.enum_member), "}"),
+    enum_member: ($) => seq(field("name", $._name), optional(seq("=", field("value", $.expr)))),
+    // type
+    type: ($) => seq("type", field("name", $._name), "{", semi_sep($.type_field), "}"),
+    type_field: ($) => seq(field("name", $.identifier), field("type", $._name)),
+    break: ($) => seq("break"),
+    comments: ($) =>
       token(prec(-1,
         choice(seq("//", /[^\n]*/), seq("/*", /[^*]*\*+([^/*][^*]*\*+)*/, "/")),
       )),
@@ -302,6 +332,7 @@ function semi_sep(elem) {
 function comma_sep(elem) {
   return rep_sepn(elem, ",");
 }
+
 
 function comma_sep_plus(elem) {
   return seq(elem, optional(rep_seq(sepn(","), elem)), optional(sepn(",")));
